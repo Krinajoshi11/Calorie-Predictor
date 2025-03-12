@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 import pickle
+import os  # Import os module for environment variables
 
 app = Flask(__name__)
 
@@ -30,4 +31,5 @@ def home():
     return render_template('index.html')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 8080))  # Use Render's assigned port or default to 8080
+    app.run(host="0.0.0.0", port=port)  # Change host to "0.0.0.0" to make it accessible online
